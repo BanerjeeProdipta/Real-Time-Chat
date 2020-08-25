@@ -55877,11 +55877,26 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   methods: {
     send: function send() {
       if (this.message.length != 0) {
-        this.chat.message.push(this.message); // console.log(this.message)
-
-        this.message = '';
+        this.chat.message.push(this.message);
+        this.message = ''; // console.log(this.message)
+        // axios.post('/send', {
+        //     message : this.message
+        //   })
+        //   .then(response => {
+        //     console.log(response);
+        //     this.message = '';
+        //   })
+        //   .catch(error => {
+        //     console.log(error);
+        //   });
       }
     }
+  },
+  mounted: function mounted() {
+    Echo["private"]('chat').listen('ChatEvent', function (e) {
+      // this.chat.message.push(e.message);
+      console.log(e);
+    });
   }
 });
 
