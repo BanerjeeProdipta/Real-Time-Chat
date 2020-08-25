@@ -20,9 +20,7 @@ Route::get('/', function () {
 
 Route::get('/chat','ChatController@chat')->middleware('auth');
 
-Route::get('/send','ChatController@send')->middleware('auth');
-
-// Route::post('/send','ChatController@send')->middleware('auth');
+Route::post('/send','ChatController@send')->middleware('auth');
 
 Auth::routes();
 
