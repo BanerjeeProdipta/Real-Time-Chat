@@ -15,6 +15,7 @@ use App\User;
 class ChatEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
     public $user;
     public $message;
     /**
@@ -22,7 +23,7 @@ class ChatEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct( User $user,$message)
+    public function __construct( $message, User $user)
     {
         return $this->user = $user;
         return $this->message = $message;
