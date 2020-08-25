@@ -9,7 +9,6 @@ Vue.use(VueChatScroll)
 Vue.component('message', require('./components/message.vue').default);
 
 
-
 const app = new Vue({
     el: '#app',
 
@@ -22,7 +21,7 @@ const app = new Vue({
     methods: {
         send(){
             if(this.message.length != 0){
-                
+
                 this.chat.message.push(this.message);
                 this.message = '';
                 // console.log(this.message)
@@ -41,7 +40,7 @@ const app = new Vue({
         }
     },
     mounted() {
-        Echo.private('chat')
+        Echo.private('Chat')
             .listen('ChatEvent', (e) => {
                 // this.chat.message.push(e.message);
                 console.log(e);

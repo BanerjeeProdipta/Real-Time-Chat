@@ -37,5 +37,6 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: '771a9908725213255ecd',
     cluster: 'ap2',
-    forceTLS: true
+    forceTLS: true,
+    encrypted: true
 });
