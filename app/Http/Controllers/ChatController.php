@@ -17,4 +17,6 @@ class ChatController extends Controller
         
         event((new ChatEvent( $request->message, auth()->user())));
     }
+
+    
 }

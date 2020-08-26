@@ -1,12 +1,12 @@
 <template>
-<div>
 
+<div>
     <div v-if="user === 'me'" class="d-flex flex-row-reverse">
-        <li class="list-group-item" :class="className"><slot></slot></li>
+        <li class="list-group-item" :class="className"><slot></slot><small class="text-muted ml-2">{{time}}</small></li>
     </div>
 
     <div v-if="user !== 'me'" class="d-flex flex-row">
-        <li class="list-group-item"><slot></slot></li>
+        <li class="list-group-item"><slot></slot><small class="text-muted ml-2">{{time}}</small></li>
     </div>
 
 </div>
@@ -17,7 +17,8 @@
         props: [
             'color',
             'user',
-            'typing'
+            'typing',
+            'time'
         ],
         computed: {
             className() {

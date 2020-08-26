@@ -19,17 +19,18 @@
         <div class="flex"></div>
         <div class="flex border border-gray-300 rounded-lg" id="app">
             <li class="list-group-item active">Private Chat</li>
-            <div class=" d-flex">@{{ typing }}</div>
             <ul class="list-group" v-chat-scroll>
                <message 
                v-for = "value,index in chat.message"
                :key = value.index
                color = info
                :user = chat.user[index]
+               :time = chat.time[index]
                >
                    @{{value}}
                </message>
               </ul>
+              <div class="d-flex">@{{ typing }}</div>
             <input type="text" class="form-control" placeholder="Typle a message..." v-model='message' @keyup.enter='send' autofocus>
         </div>
         <div class="flex"></div>

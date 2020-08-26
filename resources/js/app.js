@@ -16,7 +16,8 @@ const app = new Vue({
         message:'',
         chat:{
             message:[],
-            user:[]
+            user:[],
+            time:[]
         },
         typing: ""
     },
@@ -36,6 +37,7 @@ const app = new Vue({
 
                 this.chat.message.push(this.message);
                 this.chat.user.push('me');
+                this.chat.time.push(this.getTime());
                 // this.message = '';
                 console.log(this.message)
                 
@@ -51,9 +53,9 @@ const app = new Vue({
                   });
             }
         },
-        gettime(){
+        getTime(){
             let time = new Date();
-            return time.getHours()+':'+time.getMinutes;
+            return time.getHours()+':'+time.getMinutes();
         }
     },
 
@@ -62,6 +64,7 @@ const app = new Vue({
             .listen('ChatEvent', (e) => {
                 this.chat.message.push(e.message);
                 this.chat.user.push(e.user);
+                this.chat.time.push(this.getTime());
                 console.log(e);
         })
             .listenForWhisper('typing', (e) => {
