@@ -15,7 +15,8 @@ const app = new Vue({
     data: {
         message:'',
         chat:{
-            message:[]
+            message:[],
+            user:[]
         }
     },
     methods: {
@@ -23,6 +24,7 @@ const app = new Vue({
             if(this.message.length != 0){
 
                 this.chat.message.push(this.message);
+                this.chat.user.push('me');
                 // this.message = '';
                 console.log(this.message)
                 
@@ -43,6 +45,7 @@ const app = new Vue({
         Echo.private('chat')
             .listen('ChatEvent', (e) => {
                 this.chat.message.push(e.message);
+                this.chat.user.push(e.user);
                 console.log(e);
     });
     }

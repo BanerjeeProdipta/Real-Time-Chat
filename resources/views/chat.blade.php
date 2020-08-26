@@ -21,9 +21,11 @@
             <li class="list-group-item active">Private Chat</li>
             <ul class="list-group" v-chat-scroll>
                <message 
-               v-for="value in chat.message"
-               :key=value.index
-               color=info>
+               v-for = "value,index in chat.message"
+               :key = value.index
+               color = info
+               :user = chat.user[index]
+               >
                    @{{value}}
                </message>
               </ul>
