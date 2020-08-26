@@ -17,8 +17,19 @@ const app = new Vue({
         chat:{
             message:[],
             user:[]
+        },
+        typing: ""
+    },
+
+    watch: {
+        message(){
+            Echo.private('chat')
+            .whisper('typing', {
+                name: this.message
+            });
         }
     },
+
     methods: {
         send(){
             if(this.message.length != 0){
@@ -39,14 +50,30 @@ const app = new Vue({
                     console.log(error);
                   });
             }
+        },
+        gettime(){
+            let time = new Date();
+            return time.getHours()+':'+time.getMinutes;
         }
     },
+
     mounted() {
         Echo.private('chat')
             .listen('ChatEvent', (e) => {
                 this.chat.message.push(e.message);
                 this.chat.user.push(e.user);
                 console.log(e);
-    });
+        })
+            .listenForWhisper('typing', (e) => {
+                if(e.name != ''){
+                    this.typing="typing..."
+                    // console.log('typing');
+                }
+                else{
+                    this.typing=""
+                    // console.log('')
+                }
+                
+        })
     }
 });

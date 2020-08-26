@@ -19,6 +19,7 @@
         <div class="flex"></div>
         <div class="flex border border-gray-300 rounded-lg" id="app">
             <li class="list-group-item active">Private Chat</li>
+            <div class=" d-flex">@{{ typing }}</div>
             <ul class="list-group" v-chat-scroll>
                <message 
                v-for = "value,index in chat.message"

@@ -17,6 +17,7 @@
         props: [
             'color',
             'user',
+            'typing'
         ],
         computed: {
             className() {
