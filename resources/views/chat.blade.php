@@ -22,8 +22,8 @@
     <div class="container">
         <div class="flex"></div>
         <div class="flex border border-gray-300 rounded-lg" id="app">
-            <li class="list-group-item bg-dark text-white">Private Chat</li>
-            {{-- <li class="list-group-item bg-dark text-white">Private Chat</li> --}}
+            {{-- <li class="list-group-item bg-dark text-white">@{{name}} </li> --}}
+            <li class="list-group-item bg-dark text-white">Private Chat <span class="text-muted">(@{{numberOfUser}})</span></li>
             <ul class="list-group" v-chat-scroll>
                <message 
                v-for = "value,index in chat.message"
@@ -35,8 +35,8 @@
                    @{{value}}
                </message>
               </ul>
-              <li class="d-flex bg-gray">@{{ typing }}</li>
-            <input type="text" class="form-control" placeholder="Typle a message..." v-model='message' @keyup.enter='send' autofocus>
+              <li class="d-flex flex-row text-muted pb-2">@{{ typing }}</li>
+            <input class="form-control" placeholder="Type a message..." v-model='message' @keyup.enter='send' autofocus>
         </div>
         <div class="flex"></div>
     </div>

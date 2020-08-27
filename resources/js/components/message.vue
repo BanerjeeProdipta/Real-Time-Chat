@@ -8,7 +8,7 @@
             class="rounded-circle"
         > 
         </div>
-        <li id="text" class="list-group-item" :class="className"><slot></slot><small class="text-muted ml-2">{{time}}</small></li>
+        <li class="list-group-item" :class="className"><slot></slot><small class="text-muted ml-2">{{time}}</small></li>
     </div>
 
     <div v-if="user !== 'me'" class="d-flex flex-row align-items-center ml-2 mt-2">
@@ -19,7 +19,7 @@
             class="rounded-circle"
         > 
         </div>
-        <li id="text" class="list-group-item"><slot></slot><small class="text-muted ml-2">{{time}}</small></li>
+        <li class="list-group-item"><slot></slot><small class="text-muted ml-2">{{time}}</small></li>
     </div>
 
 </div>

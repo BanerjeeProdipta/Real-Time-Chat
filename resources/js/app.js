@@ -1,10 +1,19 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
 import Vue from 'vue'
 
 import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
+
+import Toaster from 'v-toaster'
+
+// You need a specific loader for CSS files like https://github.com/webpack/css-loader
+import 'v-toaster/dist/v-toaster.css'
+
+// optional set default imeout, the default is 10000 (10 seconds).
+Vue.use(Toaster, {timeout: 8000})
 
 Vue.component('message', require('./components/message.vue').default);
 
@@ -19,7 +28,8 @@ const app = new Vue({
             user:[],
             time:[]
         },
-        typing: ""
+        typing: "",
+        numberOfUser:0
     },
 
     watch: {
@@ -69,7 +79,7 @@ const app = new Vue({
         })
             .listenForWhisper('typing', (e) => {
                 if(e.name != ''){
-                    this.typing="typing..."
+                    this.typing="Typing..."
                     // console.log('typing');
                 }
                 else{
@@ -77,6 +87,25 @@ const app = new Vue({
                     // console.log('')
                 }
                 
+        });
+    Echo.join('chat')
+        .here((user) =>{
+            this.numberOfUser = user.length;
+            // console.log(users);
         })
+        .joining((user) =>{
+            this.numberOfUser +=1;
+            this.$toaster.success(user.name+' joined the chat room')
+            console.log(user.name);
+        })
+        .leaving((user) =>{
+            this.numberOfUser -=1;
+            this.$toaster.error(user.name+' left the chat room')
+            console.log(user.name);
+        })
+        .listen('NewMessage', (e) => {
+        //
+    });
+
     }
 });
