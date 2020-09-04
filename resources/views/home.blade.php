@@ -13,8 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                        <a href="/chat" class="btn btn-primary">Start a meeting</a>
                 </div>
             </div>
         </div>
