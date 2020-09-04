@@ -52,7 +52,8 @@ const app = new Vue({
                 console.log(this.message)
                 
                 axios.post('/send', {
-                    message : this.message
+                    message : this.message,
+                    chat : this.chat
                   })
                   .then(response => {
                     console.log(response);
